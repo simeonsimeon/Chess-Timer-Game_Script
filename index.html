@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="div" style="height:100px;width:200px;background-color: aquamarine;margin-left: 35%;">
+    <h1 id="first">5.00</h1>
+    <h1 id="sec">5.00</h1>
+    
+    </div>
+    <div style="margin-left: 35%;">
+    <button id="startbtn">Start</button>
+    <button id="swap">Swap</button>
+    <button id="stop">Reset</button>
+    </div>
+
+    <script>
+        
+       let min=4;
+       let sec=60;
+       let min1=4;
+       let sec1=60;
+       let time=false;
+       let set;
+       let sett;
+       let first=document.getElementById("first");
+        function start(){
+            set=setInterval(() =>{
+                 if(min>=0){
+                    sec--
+                    first.innerHTML=min+":"+sec;
+                    if(sec==0){
+                        min--
+                        sec=60;
+                    }
+                    if(min==0 && sec==0){
+                        clearInterval(set);
+                    }
+
+                 }
+            },1000)
+        }
+        let stbtn=document.getElementById("startbtn");
+        stbtn.addEventListener("click",function(){
+            start();
+
+        })
+        let second=document.getElementById("sec");
+        function swap(){
+             sett=setInterval(() =>{
+                 if(min1>=0){
+                    sec1--
+                    second.innerHTML=min1+":"+sec1;
+                    if(sec1==0){
+                        min1--
+                        sec1=60;
+                    }
+                    if(min1==0 && sec1==0){
+                        clearInterval(sett);
+                    }
+
+                 }
+            },1000)
+        }
+        let swapbtn=document.getElementById("swap");
+        console.log(swapbtn)
+        swapbtn.addEventListener("click",function(){
+             time=!time;
+            if(time==true){
+                swap();
+                clearInterval(set);
+            }else{
+                start();
+                clearInterval(sett)
+            }
+        });
+        
+        let stop=document.getElementById("stop");
+     stop.addEventListener("click",function(){
+
+        clearInterval(set);
+        clearInterval(sett);
+        sec=60;
+        sec1=60;
+        first.innerHTML="5.00";
+        second.innerHTML="5.00";
+        
+
+     })
+
+    
+
+    </script>
+</body>
+</html>
